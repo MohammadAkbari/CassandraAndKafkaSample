@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CassandraSample", "CassandraSample\CassandraSample.csproj", "{210A783F-A3AE-4A44-9DCB-E78E795E6194}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaSample", "KafkaSample\KafkaSample.csproj", "{79EF3A60-E60E-42BB-A955-0C28FA3CBD3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{210A783F-A3AE-4A44-9DCB-E78E795E6194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{210A783F-A3AE-4A44-9DCB-E78E795E6194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{210A783F-A3AE-4A44-9DCB-E78E795E6194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{210A783F-A3AE-4A44-9DCB-E78E795E6194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79EF3A60-E60E-42BB-A955-0C28FA3CBD3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79EF3A60-E60E-42BB-A955-0C28FA3CBD3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79EF3A60-E60E-42BB-A955-0C28FA3CBD3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79EF3A60-E60E-42BB-A955-0C28FA3CBD3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3203658-F32C-4926-9386-C8A2C6E7BE2C}
+	EndGlobalSection
+EndGlobal

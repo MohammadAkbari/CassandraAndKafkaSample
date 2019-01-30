@@ -1,0 +1,11 @@
+C:\Users\m.akbari\Source\Repos\CassandraSample\KafkaSample\bin\Debug\netcoreapp2.1\KafkaSample.deps.json
+C:\Users\m.akbari\Source\Repos\CassandraSample\KafkaSample\bin\Debug\netcoreapp2.1\KafkaSample.runtimeconfig.json
+C:\Users\m.akbari\Source\Repos\CassandraSample\KafkaSample\bin\Debug\netcoreapp2.1\KafkaSample.runtimeconfig.dev.json
+C:\Users\m.akbari\Source\Repos\CassandraSample\KafkaSample\bin\Debug\netcoreapp2.1\KafkaSample.dll
+C:\Users\m.akbari\Source\Repos\CassandraSample\KafkaSample\obj\Debug\netcoreapp2.1\KafkaSample.csprojAssemblyReference.cache
+C:\Users\m.akbari\Source\Repos\CassandraSample\KafkaSample\obj\Debug\netcoreapp2.1\KafkaSample.csproj.CoreCompileInputs.cache
+C:\Users\m.akbari\Source\Repos\CassandraSample\KafkaSample\obj\Debug\netcoreapp2.1\KafkaSample.AssemblyInfoInputs.cache
+C:\Users\m.akbari\Source\Repos\CassandraSample\KafkaSample\obj\Debug\netcoreapp2.1\KafkaSample.AssemblyInfo.cs
+C:\Users\m.akbari\Source\Repos\CassandraSample\KafkaSample\bin\Debug\netcoreapp2.1\KafkaSample.pdb
+C:\Users\m.akbari\Source\Repos\CassandraSample\KafkaSample\obj\Debug\netcoreapp2.1\KafkaSample.dll
+C:\Users\m.akbari\Source\Repos\CassandraSample\KafkaSample\obj\Debug\netcoreapp2.1\KafkaSample.pdb

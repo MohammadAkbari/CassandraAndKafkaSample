@@ -1,0 +1,11 @@
+C:\Users\m.akbari\Source\Repos\CassandraSample\CassandraSample\bin\Debug\netcoreapp2.1\CassandraSample.deps.json
+C:\Users\m.akbari\Source\Repos\CassandraSample\CassandraSample\bin\Debug\netcoreapp2.1\CassandraSample.runtimeconfig.json
+C:\Users\m.akbari\Source\Repos\CassandraSample\CassandraSample\bin\Debug\netcoreapp2.1\CassandraSample.runtimeconfig.dev.json
+C:\Users\m.akbari\Source\Repos\CassandraSample\CassandraSample\bin\Debug\netcoreapp2.1\CassandraSample.dll
+C:\Users\m.akbari\Source\Repos\CassandraSample\CassandraSample\obj\Debug\netcoreapp2.1\CassandraSample.csprojAssemblyReference.cache
+C:\Users\m.akbari\Source\Repos\CassandraSample\CassandraSample\obj\Debug\netcoreapp2.1\CassandraSample.csproj.CoreCompileInputs.cache
+C:\Users\m.akbari\Source\Repos\CassandraSample\CassandraSample\obj\Debug\netcoreapp2.1\CassandraSample.AssemblyInfoInputs.cache
+C:\Users\m.akbari\Source\Repos\CassandraSample\CassandraSample\obj\Debug\netcoreapp2.1\CassandraSample.AssemblyInfo.cs
+C:\Users\m.akbari\Source\Repos\CassandraSample\CassandraSample\bin\Debug\netcoreapp2.1\CassandraSample.pdb
+C:\Users\m.akbari\Source\Repos\CassandraSample\CassandraSample\obj\Debug\netcoreapp2.1\CassandraSample.dll
+C:\Users\m.akbari\Source\Repos\CassandraSample\CassandraSample\obj\Debug\netcoreapp2.1\CassandraSample.pdb
