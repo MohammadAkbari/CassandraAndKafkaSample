@@ -840,14 +840,14 @@
     "Confluent.Kafka/1.0.0-beta2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pfVWN0g+4aNXn5fgRnbCM1zCuhBskPpsI+GO/Nvx+yYJvbAYgYjWUYsGYMP6aUn0WcWuh0jKujfhYUeKW/F+iA==",
+      "sha512": "sha512-U5chFyta/ZSY3SKF133YMC0a4jjNL0e6LVqwpgesIZsSy6fpok69iOKQj7GcWhgOJZrmM3h3c4PtNFtjpoN2IQ==",
       "path": "confluent.kafka/1.0.0-beta2",
       "hashPath": "confluent.kafka.1.0.0-beta2.nupkg.sha512"
     },
     "librdkafka.redist/1.0.0-PRE1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-45sAQu9BGH5v5PRPvP+Mm5Be87+WyweUU/G21tD6fCv10hpn2gDBzJI8EoUIryE1OYTCWtrQo1cfTnFyKz1zLw==",
+      "sha512": "sha512-+hMXP31dEAfl/5A8kEyVwzXwjMnMDu0b4v/sWBcH4DYhK9+VRgNcsZWVW8+sXHnILFwvp4W32EZFR2p4efzsqg==",
       "path": "librdkafka.redist/1.0.0-pre1",
       "hashPath": "librdkafka.redist.1.0.0-pre1.nupkg.sha512"
     },
@@ -1036,7 +1036,7 @@
     "System.Memory/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-P56/L4B9vhz0YFTC4qIXFgx+VgMhg3JhCm5/EASihTotyjwmBt2QEAQdmd2tNctYET/w0CRJzVH1cwxgbKGnDQ==",
+      "sha512": "sha512-m0psCSpUxTGfvwyO0i03ajXVhgBqyXlibXz0Mo1dtKGjaHrXFLnuQ8rNBTmWRqbfRjr4eC6Wah4X5FfuFDu5og==",
       "path": "system.memory/4.5.0",
       "hashPath": "system.memory.4.5.0.nupkg.sha512"
     },
@@ -1141,7 +1141,7 @@
     "System.Runtime.CompilerServices.Unsafe/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6zBxkHYemB0kQiHP3vGXGRXejZVoNVuMn2paUuqKKi5Wyjkxfkp+D0rd0c3VrGwotidRINt6KpOi2smL4VkJKw==",
+      "sha512": "sha512-YrzNWduCDHhUaSRBxHxL11UkM2fD6y8hITHis4/LbQZ6vj3vdRjoH3IoPWWC9uDXK2wHIqn+b5gv1Np/VKyM1g==",
       "path": "system.runtime.compilerservices.unsafe/4.5.0",
       "hashPath": "system.runtime.compilerservices.unsafe.4.5.0.nupkg.sha512"
     },

@@ -5,7 +5,17 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CassandraSample", "CassandraSample\CassandraSample.csproj", "{210A783F-A3AE-4A44-9DCB-E78E795E6194}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaSample", "KafkaSample\KafkaSample.csproj", "{79EF3A60-E60E-42BB-A955-0C28FA3CBD3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaSample", "KafkaSample\KafkaSample.csproj", "{79EF3A60-E60E-42BB-A955-0C28FA3CBD3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redis1", "Redis1\Redis1.csproj", "{481B075F-2E08-459E-986D-1F107B11EC07}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redis2", "Redis2\Redis2.csproj", "{E466F4BA-45AA-41C0-9C8D-4194A43EB7C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SparkMobius", "SparkMobius\SparkMobius.csproj", "{0F6CF6D0-BCEC-4CC1-A3F2-970DC0A4BD60}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobiusSample", "MobiusSample\MobiusSample.csproj", "{8D203692-1522-44F8-A018-69B74CD24BC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaConsumer", "KafkaConsumer\KafkaConsumer.csproj", "{F06B8872-6CAF-4A86-B234-2B7DED4A59F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +31,26 @@ Global
 		{79EF3A60-E60E-42BB-A955-0C28FA3CBD3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79EF3A60-E60E-42BB-A955-0C28FA3CBD3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79EF3A60-E60E-42BB-A955-0C28FA3CBD3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{481B075F-2E08-459E-986D-1F107B11EC07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{481B075F-2E08-459E-986D-1F107B11EC07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{481B075F-2E08-459E-986D-1F107B11EC07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{481B075F-2E08-459E-986D-1F107B11EC07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E466F4BA-45AA-41C0-9C8D-4194A43EB7C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E466F4BA-45AA-41C0-9C8D-4194A43EB7C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E466F4BA-45AA-41C0-9C8D-4194A43EB7C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E466F4BA-45AA-41C0-9C8D-4194A43EB7C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F6CF6D0-BCEC-4CC1-A3F2-970DC0A4BD60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F6CF6D0-BCEC-4CC1-A3F2-970DC0A4BD60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F6CF6D0-BCEC-4CC1-A3F2-970DC0A4BD60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F6CF6D0-BCEC-4CC1-A3F2-970DC0A4BD60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D203692-1522-44F8-A018-69B74CD24BC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D203692-1522-44F8-A018-69B74CD24BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D203692-1522-44F8-A018-69B74CD24BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D203692-1522-44F8-A018-69B74CD24BC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F06B8872-6CAF-4A86-B234-2B7DED4A59F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F06B8872-6CAF-4A86-B234-2B7DED4A59F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F06B8872-6CAF-4A86-B234-2B7DED4A59F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F06B8872-6CAF-4A86-B234-2B7DED4A59F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

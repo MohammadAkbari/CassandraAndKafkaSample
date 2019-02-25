@@ -1,17 +1,53 @@
 ﻿using Confluent.Kafka;
+using Confluent.Kafka.Admin;
 using System;
+using System.Collections.Generic;
 
 namespace KafkaSample
 {
     class Program
     {
+        const string SERVER = "192.168.20.80:9092";
+        const string TOPIC = "Sheep4";
+
         static void Main(string[] args)
+        {
+            Console.Title = "Producer";
+
+            var config = new ProducerConfig
+            {
+                BootstrapServers = SERVER,
+                //PartitionAssignmentStrategy = PartitionAssignmentStrategyType.Roundrobin,
+                //Partitioner = PartitionerType.Random
+            };
+
+            using (var producer = new Producer<Null, string>(config))
+            {
+                using (var adminClient = new AdminClient(producer.Handle))
+                {
+                    adminClient.CreateTopicsAsync(new TopicSpecification[] { new TopicSpecification { Name = TOPIC, NumPartitions = 5, ReplicationFactor = 1 } }).Wait();
+                    adminClient.CreatePartitionsAsync(new List<PartitionsSpecification> { new PartitionsSpecification { Topic = TOPIC, IncreaseTo = 6 } }).Wait();
+                }
+            }
+
+
+            for (int i = 0; i < 100000; i++)
+            {
+                ProducerX(TOPIC, i);
+            }
+
+            Console.WriteLine(new string('_', 200));
+
+            Console.ReadKey();
+        }
+
+        private static void ConsumerX()
         {
             var conf = new ConsumerConfig
             {
                 GroupId = "test-consumer-group",
-                BootstrapServers = "172.26.146.243:9092",
-                AutoOffsetReset = AutoOffsetResetType.Earliest
+                BootstrapServers = SERVER,
+                AutoOffsetReset = AutoOffsetResetType.Earliest,
             };
 
             using (var consumer = new Consumer<Ignore, string>(conf))
@@ -20,6 +56,10 @@ namespace KafkaSample
 
                 bool consuming = true;
                 consumer.OnError += (_, e) => consuming = !e.IsFatal;
+                consumer.OnPartitionEOF += (_, topicPartitionOffset) =>
+                {
+                    Console.WriteLine($"End of partition: {topicPartitionOffset}");
+                };
 
                 while (consuming)
                 {
@@ -36,19 +76,33 @@ namespace KafkaSample
 
                 consumer.Close();
             }
-
-            Console.ReadKey();
         }
 
-        private static void ProducerX()
+        private static void ProducerX(string topic, int value)
         {
-            var config = new ProducerConfig { BootstrapServers = "172.26.146.243:9092" };
+            var config = new ProducerConfig
+            {
+                BootstrapServers = SERVER,
+                //PartitionAssignmentStrategy = PartitionAssignmentStrategyType.Roundrobin,
+                //Partitioner = PartitionerType.Random
+            };
 
             using (var producer = new Producer<Null, string>(config))
             {
                 try
                 {
-                    var dr = producer.ProduceAsync("TutorialTopic", new Message<Null, string> { Value = "test" }).GetAwaiter().GetResult();
+                    var key = value % 5;
+
+                    var partition = new Partition(key);
+
+                    var topicPartition = new TopicPartition(topic, partition);
+
+                    var message = new Message<Null, string> { Value = $"value-{value}" };
+
+                    var dr2 = producer.ProduceAsync(topic, message).GetAwaiter().GetResult();
+
+                    var dr = producer.ProduceAsync(topicPartition, message).GetAwaiter().GetResult();
+
                     Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
                 }
                 catch (KafkaException e)
