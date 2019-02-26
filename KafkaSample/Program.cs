@@ -7,21 +7,46 @@ namespace KafkaSample
 {
     class Program
     {
-        const string SERVER = "192.168.20.80:9092";
-        const string TOPIC = "Sheep4";
+        const string SERVER = "192.168.42.132:9092";
+        const string TOPIC = "Sheep";
 
         static void Main(string[] args)
         {
             Console.Title = "Producer";
 
-            var config = new ProducerConfig
-            {
-                BootstrapServers = SERVER,
-                //PartitionAssignmentStrategy = PartitionAssignmentStrategyType.Roundrobin,
-                //Partitioner = PartitionerType.Random
-            };
+            DeleteTopic();
+            CreateTopic();
 
-            using (var producer = new Producer<Null, string>(config))
+            for (int i = 0; i < 10000; i++)
+            {
+                PublisherWithoutPartition(TOPIC, i);
+            }
+
+            Console.WriteLine(new string('_', 100));
+
+            Console.ReadKey();
+        }
+
+        private static void DeleteTopic()
+        {
+            using (var producer = new Producer<Null, string>(GetConfig()))
+            {
+                using (var adminClient = new AdminClient(producer.Handle))
+                {
+                    try
+                    {
+                        adminClient.DeleteTopicsAsync(new List<string> { TOPIC }).Wait();
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                }
+            }
+        }
+
+        private static void CreateTopic()
+        {
+            using (var producer = new Producer<Null, string>(GetConfig()))
             {
                 using (var adminClient = new AdminClient(producer.Handle))
                 {
@@ -29,65 +54,42 @@ namespace KafkaSample
                     adminClient.CreatePartitionsAsync(new List<PartitionsSpecification> { new PartitionsSpecification { Topic = TOPIC, IncreaseTo = 6 } }).Wait();
                 }
             }
-
-
-            for (int i = 0; i < 100000; i++)
-            {
-                ProducerX(TOPIC, i);
-            }
-
-            Console.WriteLine(new string('_', 200));
-
-            Console.ReadKey();
         }
 
-        private static void ConsumerX()
-        {
-            var conf = new ConsumerConfig
-            {
-                GroupId = "test-consumer-group",
-                BootstrapServers = SERVER,
-                AutoOffsetReset = AutoOffsetResetType.Earliest,
-            };
-
-            using (var consumer = new Consumer<Ignore, string>(conf))
-            {
-                consumer.Subscribe("TutorialTopic");
-
-                bool consuming = true;
-                consumer.OnError += (_, e) => consuming = !e.IsFatal;
-                consumer.OnPartitionEOF += (_, topicPartitionOffset) =>
-                {
-                    Console.WriteLine($"End of partition: {topicPartitionOffset}");
-                };
-
-                while (consuming)
-                {
-                    try
-                    {
-                        var cr = consumer.Consume();
-                        Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
-                    }
-                    catch (ConsumeException e)
-                    {
-                        Console.WriteLine($"Error occured: {e.Error.Reason}");
-                    }
-                }
-
-                consumer.Close();
-            }
-        }
-
-        private static void ProducerX(string topic, int value)
+        private static ProducerConfig GetConfig()
         {
             var config = new ProducerConfig
             {
                 BootstrapServers = SERVER,
-                //PartitionAssignmentStrategy = PartitionAssignmentStrategyType.Roundrobin,
-                //Partitioner = PartitionerType.Random
+                PartitionAssignmentStrategy = PartitionAssignmentStrategyType.Range,
+                Partitioner = PartitionerType.Consistent
             };
 
-            using (var producer = new Producer<Null, string>(config))
+            return config;
+        }
+
+        private static void PublisherWithoutPartition(string topic, int value)
+        {
+            using (var producer = new Producer<int, string>(GetConfig(), Serializers.Int32))
+            {
+                try
+                {
+                    var message = new Message<int, string> { Key = value, Value = $"value-{value}" };
+
+                    var dr = producer.ProduceAsync(topic, message).GetAwaiter().GetResult();
+
+                    Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
+                }
+                catch (KafkaException e)
+                {
+                    Console.WriteLine($"Delivery failed: {e.Error.Reason}");
+                }
+            }
+        }
+
+        private static void PublisherWithPartition(string topic, int value)
+        {
+            using (var producer = new Producer<Null, string>(GetConfig()))
             {
                 try
                 {
@@ -97,9 +99,7 @@ namespace KafkaSample
 
                     var topicPartition = new TopicPartition(topic, partition);
 
-                    var message = new Message<Null, string> { Value = $"value-{value}" };
-
-                    var dr2 = producer.ProduceAsync(topic, message).GetAwaiter().GetResult();
+                    var message = new Message<Null, string> { Value = $"value-{value}" }; 
 
                     var dr = producer.ProduceAsync(topicPartition, message).GetAwaiter().GetResult();
 
