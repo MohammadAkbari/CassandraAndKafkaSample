@@ -47,21 +47,50 @@ namespace KafkaConsumer
                         Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
                         Thread.Sleep(200);
 
+                        var exists = consumer.Assignment.Select(e => e.Partition.Value).ToList();
+                        Console.WriteLine(string.Join(',', exists));
+
                         counter++;
+
+                        //if(counter%50 == 0)
+                        //{
+                        //    var notexists = new List<int> { 2, 3, 4 };
+                        //    var partitionKey = notexists.Except(exists).FirstOrDefault();
+
+                        //    if(partitionKey > 0)
+                        //    {
+                        //        consumer.Assign(new List<TopicPartition>
+                        //        {
+                        //            new TopicPartition(TOPIC, new Partition(0)),
+                        //            new TopicPartition(TOPIC, new Partition(1)),
+                        //            new TopicPartition(TOPIC, new Partition(partitionKey))
+                        //        });
+                        //    }
+                        //}
+
                         var topicPartitions = consumer.Assignment;
                         var topicPartition = topicPartitions.Where(e => e.Partition == 1).FirstOrDefault();
 
-                        if (counter == 50)
+                        if(topicPartition != null)
                         {
-                            consumer.Seek(new TopicPartitionOffset(topicPartition, new Offset(30)));
 
-                            //consumer.Pause(new List<TopicPartition> { topicPartition });
+                            if (counter == 50)
+                            {
+                                Console.WriteLine(new string('*', 100));
+
+                                //consumer.Seek(new TopicPartitionOffset(topicPartition, new Offset(30)));
+                                consumer.Pause(new List<TopicPartition> { topicPartition });
+                            }
+
+                            if (counter == 500)
+                            {
+                                Console.WriteLine(new string('-', 100));
+
+                                consumer.Resume(new List<TopicPartition> { topicPartition });
+                            }
                         }
 
-                        //if(counter == 500)
-                        //{
-                        //    consumer.Resume(new List<TopicPartition> { topicPartition });
-                        //}
+
                     }
                     catch (ConsumeException e)
                     {
@@ -109,6 +138,7 @@ namespace KafkaConsumer
                 GroupId = "sheep-group",
                 BootstrapServers = SERVER,
                 AutoOffsetReset = AutoOffsetResetType.Earliest,
+                PartitionAssignmentStrategy = PartitionAssignmentStrategyType.Roundrobin
             };
 
             return config;
