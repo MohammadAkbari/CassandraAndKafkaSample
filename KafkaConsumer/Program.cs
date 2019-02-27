@@ -1,26 +1,54 @@
 ﻿using Confluent.Kafka;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 namespace KafkaConsumer
 {
     class Program
     {
-        const string SERVER = "192.168.42.132:9092";
-        const string TOPIC = "Sheep";
+        const string SERVER = "192.168.20.122:9092";
+        const string TOPIC = "vast";
 
         static void Main(string[] args)
         {
             Console.Title = "Consumer";
 
-            Subscribe();
+            SimpleSubscribe();
 
             Console.WriteLine("The End");
         }
 
-        static void Subscribe()
+        static void SimpleSubscribe()
+        {
+            using (var consumer = new Consumer<Ignore, string>(GetConfig()))
+            {
+                consumer.Subscribe(TOPIC);
+
+                var assignment = consumer.Assignment;
+
+                bool consuming = true;
+                consumer.OnError += (_, e) => consuming = !e.IsFatal;
+
+                while (consuming)
+                {
+                    try
+                    {
+                        var cr = consumer.Consume();
+                        Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
+                        Thread.Sleep(200);
+                    }
+                    catch (ConsumeException e)
+                    {
+                        Console.WriteLine($"Error occured: {e.Error.Reason}");
+                    }
+                }
+
+                consumer.Close();
+            }
+        }
+
+        static void ComplexSubscribe()
         {
             using (var consumer = new Consumer<Ignore, string>(GetConfig()))
             {
@@ -37,7 +65,7 @@ namespace KafkaConsumer
                 //    Console.WriteLine(new string('_', 100));
                 //};
 
-                var counter = 0;
+                //var counter = 0;
 
                 while (consuming)
                 {
@@ -47,10 +75,10 @@ namespace KafkaConsumer
                         Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
                         Thread.Sleep(200);
 
-                        var exists = consumer.Assignment.Select(e => e.Partition.Value).ToList();
-                        Console.WriteLine(string.Join(',', exists));
+                        //var exists = consumer.Assignment.Select(e => e.Partition.Value).ToList();
+                        //Console.WriteLine(string.Join(',', exists));
 
-                        counter++;
+                        //counter++;
 
                         //if(counter%50 == 0)
                         //{
@@ -68,27 +96,27 @@ namespace KafkaConsumer
                         //    }
                         //}
 
-                        var topicPartitions = consumer.Assignment;
-                        var topicPartition = topicPartitions.Where(e => e.Partition == 1).FirstOrDefault();
+                        //var topicPartitions = consumer.Assignment;
+                        //var topicPartition = topicPartitions.Where(e => e.Partition == 1).FirstOrDefault();
 
-                        if(topicPartition != null)
-                        {
+                        //if(topicPartition != null)
+                        //{
 
-                            if (counter == 50)
-                            {
-                                Console.WriteLine(new string('*', 100));
+                        //    if (counter == 50)
+                        //    {
+                        //        Console.WriteLine(new string('*', 100));
 
-                                //consumer.Seek(new TopicPartitionOffset(topicPartition, new Offset(30)));
-                                consumer.Pause(new List<TopicPartition> { topicPartition });
-                            }
+                        //        //consumer.Seek(new TopicPartitionOffset(topicPartition, new Offset(30)));
+                        //        consumer.Pause(new List<TopicPartition> { topicPartition });
+                        //    }
 
-                            if (counter == 500)
-                            {
-                                Console.WriteLine(new string('-', 100));
+                        //    if (counter == 500)
+                        //    {
+                        //        Console.WriteLine(new string('-', 100));
 
-                                consumer.Resume(new List<TopicPartition> { topicPartition });
-                            }
-                        }
+                        //        consumer.Resume(new List<TopicPartition> { topicPartition });
+                        //    }
+                        //}
 
 
                     }

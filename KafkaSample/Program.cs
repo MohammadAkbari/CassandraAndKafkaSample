@@ -7,8 +7,8 @@ namespace KafkaSample
 {
     class Program
     {
-        const string SERVER = "192.168.42.132:9092";
-        const string TOPIC = "Sheep";
+        const string SERVER = "192.168.20.122:9092";
+        const string TOPIC = "vast";
 
         static void Main(string[] args)
         {
